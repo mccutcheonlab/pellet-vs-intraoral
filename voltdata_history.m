@@ -1,7 +1,7 @@
 %% analyzes PVI data set using other programs
 
 clear all
-setpath
+% setpath
 
 %% works out core and shell averages using voltanalysis
 
@@ -22,21 +22,24 @@ setpath
 
 heatmap_pvi(core_avg)
 a = gcf;
-printfile = strcat(masterpath2,'\Dropbox\MATLAB\Experiments\PVI\figs\core_heatmap');
+printfile = 'core_heatmap';
 print(a,printfile,'-dpdf');
 heatmap_pvi(shell_avg);
 a = gcf;
-printfile = strcat(masterpath2,'\Dropbox\MATLAB\Experiments\PVI\figs\shell_heatmap');
+printfile = 'shell_heatmap';
 print(a,printfile,'-dpdf');
 
 %% this is re-aligning avgs to reward delivery
-data = core_avg;
-data = cat(2,data(51:200,1:2),data(21:170,3:4));
 
-data = shell_avg;
-data = cat(2,data(51:200,1:2),data(21:170,3:4));
-
-cueDA = nans(8,2);
-cueDA(1:4,:) = squeeze(mean(core_all(100:129,1:4,1:2),1));
-cueDA(5:8,:) = squeeze(mean(shell_all(100:129,5:8,1:2),1));
+% Not sure whether these lines are necessary
+%
+% data = core_avg;
+% data = cat(2,data(51:200,1:2),data(21:170,3:4));
+% 
+% data = shell_avg;
+% data = cat(2,data(51:200,1:2),data(21:170,3:4));
+% 
+% cueDA = nans(8,2);
+% cueDA(1:4,:) = squeeze(mean(core_all(100:129,1:4,1:2),1));
+% cueDA(5:8,:) = squeeze(mean(shell_all(100:129,5:8,1:2),1));
 
