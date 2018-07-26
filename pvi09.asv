@@ -1,6 +1,6 @@
 clear all
 setpath;
-datafolder = strcat(masterfolder, 'Raw data and snipped trials\pvi09';
+datafolder = strcat(masterfolder, 'pvi09';
 behavfile = 'F:\Jaime_Expts\Moved_to_server\1209_PelletVsIO\Med_Data\Cohort_2\!2012-09-26_11h23m.Subject PVI9';
 
 rat = 9;
@@ -25,6 +25,6 @@ noise.probepellet = noiseQa(strcat(filepath,'CUT_probepellet\BATCH_PC'),Qa,[21:1
 noise.probeinf = noiseQa(strcat(filepath,'CUT_probeinf\BATCH_PC'),Qa,[21:170]);
 noise.dummy = noiseQa(strcat(filepath,'CUT_dummy\BATCH_PC'),Qa,[21:170]);
 
-savefile = strcat(masterfolder, 'Extracted Matlab data\pvi_09');
+savefile = '\Dropbox\MATLAB\Experiments\2013_PVI\pvi_09';
 
 voltdata_pvi
