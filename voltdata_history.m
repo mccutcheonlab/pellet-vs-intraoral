@@ -11,7 +11,7 @@ clear all
 [core_avg core_all] = voltanalysis_pvi(1,'rat','core, rat-by-rat');
 [shell_avg shell_all] = voltanalysis_pvi(2,'rat','shell, rat-by-rat');
 
-% [all_avg all_alldata] = voltanalysis_pvi(3,'rat','all, rat-by-rat');
+[all_avg all_alldata] = voltanalysis_pvi(3,'rat','all, rat-by-rat');
 
 % for when nanmean is unavailable
 % core_avg = squeeze(mean(core_all(:,1:4,:),2));
@@ -20,14 +20,14 @@ clear all
 
 %% makes and saves heatmaps
 
-heatmap_pvi(core_avg)
-a = gcf;
-printfile = 'core_heatmap';
-print(a,printfile,'-dpdf');
-heatmap_pvi(shell_avg);
-a = gcf;
-printfile = 'shell_heatmap';
-print(a,printfile,'-dpdf');
+% heatmap_pvi(core_avg)
+% a = gcf;
+% printfile = 'core_heatmap';
+% print(a,printfile,'-dpdf');
+% heatmap_pvi(shell_avg);
+% a = gcf;
+% printfile = 'shell_heatmap';
+% print(a,printfile,'-dpdf');
 
 %% this is re-aligning avgs to reward delivery
 

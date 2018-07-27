@@ -76,4 +76,4 @@ struct.(strcat('pvi',num2str(rat), '_x')) = x;
 struct.(strcat('pvi',num2str(rat), '_s')) = s;
 struct.(strcat('pvi',num2str(rat), '_behav')) = behav_data;
 
-save(strcat(masterpath2,savefile), '-struct', 'struct');
+save(strcat(masterpath,savefile), '-struct', 'struct');

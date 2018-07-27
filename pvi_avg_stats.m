@@ -1,6 +1,6 @@
 clear all; close all
 
-[testavg testall] = voltanalysis_pvi(3,'rat','dunno');
+[testavg testall] = voltanalysis_pvi(3,'rat','All rats');
 
 % clear all -EXCEPT 'testavg' 'testall'
 
@@ -8,34 +8,30 @@ adj_matrix = nans(150,7,5);
 adj_matrix(:,:,1:2) = testall(51:200,:,1:2);
 adj_matrix(:,:,3:5) = testall(21:170,:,3:5);
 
-%% for testing medium epochs (3s)
-% baseline = squeeze(mean(adj_matrix(21:50,:,:)));
-% cue = squeeze(mean(adj_matrix(51:80,:,:)));
-% reward = squeeze(mean(adj_matrix(81:110,:,:)));
 
 %% for testing shorter reward epochs (1s)
-baselineCued = squeeze(mean(adj_matrix(41:50,:,:)));
-baselineUncued = squeeze(mean(adj_matrix(21:50,:,:)));
-cue = squeeze(mean(adj_matrix(51:60,:,:)));
-rewardCued = squeeze(mean(adj_matrix(81:90,:,:)));
-rewardUncued = squeeze(mean(adj_matrix(81:110,:,:)));
-
-% %%for testing peak DA responses
-% baseline = squeeze(mean(adj_matrix(21:50,:,:)));
-% cue = squeeze(max(adj_matrix(51:80,:,:)));
-% reward = squeeze(max(adj_matrix(81:110,:,:)));
+baselineCued = squeeze(mean(adj_matrix(41:50,:,1:2)));
+baselineUncued = squeeze(mean(adj_matrix(21:50,:,3:5)));
+cue = squeeze(mean(adj_matrix(51:60,:,1:2)));
+rewardCued = squeeze(mean(adj_matrix(81:90,:,1:2)));
+rewardUncued = squeeze(mean(adj_matrix(81:110,:,3:5)));
 
 %% for stats for SPSS
 
 %cued trials
 spssCuedEpochs = nans(7,7);
 spssCuedEpochs(:,1) = [8; 9; 10; 12; 15; 16; 18];
-spssCuedEpochs(:,2:7) = cat(2,baselineCued(:,1:2), cue(:,1:2), rewardCued(:,1:2));
+spssCuedEpochs(:,2:7) = cat(2,baselineCued, cue, rewardCued);
 
 %uncued trials
 spssUncuedEpochs = nans(7,7);
 spssUncuedEpochs(:,1) = [8; 9; 10; 12; 15; 16; 18];
-spssUncuedEpochs(:,2:7) = cat(2,baselineUncued(:,3:5), rewardUncued(:,3:5));
+spssUncuedEpochs(:,2:7) = cat(2,baselineUncued, rewardUncued);
+
+%% for testing medium epochs (3s)
+% baseline = squeeze(mean(adj_matrix(21:50,:,:)));
+% cue = squeeze(mean(adj_matrix(51:80,:,:)));
+% reward = squeeze(mean(adj_matrix(81:110,:,:)));
 
 %% removes each rats' individual baseline
 % cue_adj = cue - baseline;
