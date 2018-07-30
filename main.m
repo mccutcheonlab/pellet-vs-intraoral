@@ -30,18 +30,12 @@ load(strcat(loadfolder,'pvi18'))
 % Combines into single x and s matrices
 x = cat(1, pvi08_x, pvi09_x, pvi10_x, pvi12_x, pvi15_x, pvi16_x, pvi18_x);
 s = cat(1, pvi08_s, pvi09_s, pvi10_s, pvi12_s, pvi15_s, pvi16_s, pvi18_s);
-% 
-% 
-% %% need to update if more rats added
-% x = cat(1, pvi8_x, pvi9_x, pvi10_x, pvi12_x, pvi15_x, pvi16_x, pvi18_x);
-% s = cat(1, pvi8_s, pvi9_s, pvi10_s, pvi12_s, pvi15_s, pvi16_s, pvi18_s);
-% 
-% %% to determine which rats are core/shell
-% 
-% core_rats = [1 2 3 5];
-% shell_rats = [4 6 7];
-% 
-% %% saves file appropriately
-% 
-% save(strcat(masterpath2,'\Dropbox\MATLAB\Experiments\2013_PVI\data\allpvi'), 'x', 's',...
-%     'core_rats', 'shell_rats');
+
+% Assigns rats to core or shell
+core_rats = [1 2 3 5];
+shell_rats = [4 6 7];
+
+% Saves allpvi file
+
+save(strcat(loadfolder, 'allpvi'), 'x', 's',...
+    'core_rats', 'shell_rats');
