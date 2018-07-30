@@ -1,13 +1,13 @@
 %% outputs averaged and rich data using specified inputs
 
-function [avgdata, alldata] = voltanalysis_pvi(region,analysis,title_pvi)
+function [avgdata, alldata] = voltanalysis_pvi(loadfile,region,analysis,title_pvi)
 
 %region: core=1, shell=2, all regions=3, all regions+latency exclusions=4
 %analysis: 'trial'=trial by trial
 
 %% loads all data and column names
 
-load allpvi
+load(loadfile)
 pvi_cols; %loads column names
 setpath; %sets paths for loading and saving appropriate for diff computers
 

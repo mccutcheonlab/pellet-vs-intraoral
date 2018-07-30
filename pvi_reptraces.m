@@ -1,10 +1,9 @@
-%rep traces - averages from PVI08
+function pvi_reptraces(ratnumber, datafolder)
 
-clear all
-load allpvi
+load(strcat(datafolder, 'allpvi'))
 pvi_cols;
 
-Lrat = x(:,R_rat) == 8;
+Lrat = x(:,R_rat) == ratnumber;
 Lclean = x(:,R_noise) ~= 1;
 
 x_ax = [1:150];
@@ -28,13 +27,12 @@ shadedErrorBar(x_ax,ymean,ysem,{'b-','markerfacecolor','b'});
 hold on; plot([1; 1], [5; 10]); axis off;
 
 %probe pellet trial
-close all
 Lselect = x(:,R_trialtype) == 3 & Lrat &Lclean;
 y = s(Lselect,51:200)';
 ymean = mean(y,2);
 ysem = std(y')' / sqrt(size(y,2));
 
-shadedErrorBar(x_ax,ymean,ysem,{'b-','markerfacecolor','b'});
+shadedErrorBar(x_ax,ymean,ysem,{'b-','markerfacecolor','y'});
 hold on; plot([1; 1], [5; 10]); axis off;
 
 %probe infusion trial
@@ -53,5 +51,7 @@ y = s(Lselect,51:200)';
 ymean = mean(y,2);
 ysem = std(y')' / sqrt(size(y,2));
 
-shadedErrorBar(x_ax,ymean,ysem);
+shadedErrorBar(x_ax,ymean,ysem, {'k-','markerfacecolor','k'});
 hold on; plot([1; 1], [5; 10]); axis off;
+
+hold off
