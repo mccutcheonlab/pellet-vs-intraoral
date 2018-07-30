@@ -1,37 +1,33 @@
 clear all; close all
 
-[testavg testall] = voltanalysis_pvi(3,'rat','All rats');
+loadfile = 'R:\DA_and_Reward\jem64\Publication Data\McCutcheon_ACSChem\Extracted Matlab data\allpvi'
 
-% clear all -EXCEPT 'testavg' 'testall'
+[trialavgs trialall] = voltanalysis_pvi(loadfile,3,1,1,'All rats');
 
-adj_matrix = nans(150,7,5);
-adj_matrix(:,:,1:2) = testall(51:200,:,1:2);
-adj_matrix(:,:,3:5) = testall(21:170,:,3:5);
+%% for placing data in epochs
+Uncued_BL = squeeze(mean(trialall(91:100,:,3:5)));
+Uncued_Reward = squeeze(mean(trialall(101:130,:,3:5)));
 
+Cued_BL = squeeze(mean(trialall(91:100,:,1:2)));
+Cued_Cue = squeeze(mean(trialall(101:110,:,1:2)));
+Cued_Reward = squeeze(mean(trialall(131:140,:,1:2)));
 
-%% for testing shorter reward epochs (1s)
-baselineCued = squeeze(mean(adj_matrix(41:50,:,1:2)));
-baselineUncued = squeeze(mean(adj_matrix(21:50,:,3:5)));
-cue = squeeze(mean(adj_matrix(51:60,:,1:2)));
-rewardCued = squeeze(mean(adj_matrix(81:90,:,1:2)));
-rewardUncued = squeeze(mean(adj_matrix(81:110,:,3:5)));
-
-%% for stats for SPSS
-
-%cued trials
-spssCuedEpochs = nans(7,7);
-spssCuedEpochs(:,1) = [8; 9; 10; 12; 15; 16; 18];
-spssCuedEpochs(:,2:7) = cat(2,baselineCued, cue, rewardCued);
+%% assemble data for stats in SPSS
 
 %uncued trials
 spssUncuedEpochs = nans(7,7);
 spssUncuedEpochs(:,1) = [8; 9; 10; 12; 15; 16; 18];
-spssUncuedEpochs(:,2:7) = cat(2,baselineUncued, rewardUncued);
+spssUncuedEpochs(:,2:7) = cat(2,Uncued_BL, Uncued_Reward);
 
-%% for testing medium epochs (3s)
-% baseline = squeeze(mean(adj_matrix(21:50,:,:)));
-% cue = squeeze(mean(adj_matrix(51:80,:,:)));
-% reward = squeeze(mean(adj_matrix(81:110,:,:)));
+%cued trials
+spssCuedEpochs = nans(7,7);
+spssCuedEpochs(:,1) = [8; 9; 10; 12; 15; 16; 18];
+spssCuedEpochs(:,2:7) = cat(2,Cued_BL, Cued_Cue, Cued_Reward);
+
+
+pvi_uncuedbars(spssUncuedEpochs)
+pvi_cuedbars(spssCuedEpochs)
+
 
 %% removes each rats' individual baseline
 % cue_adj = cue - baseline;
