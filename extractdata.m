@@ -3,11 +3,11 @@ function extractdata(ratname, ratnumber, date, region, behavfile, Qa)
 masterfolder = 'R:\DA_and_Reward\jem64\Publication Data\McCutcheon_ACSChem\'
 datafolder = strcat(masterfolder, 'Raw data and snipped trials\', ratname, '\');
 
-noise.pelletcue = noiseQa(strcat(datafolder,'CUT_pelletcue\BATCH_PC'),Qa,[51:200]);
-noise.infcue = noiseQa(strcat(datafolder,'CUT_infcue\BATCH_PC'),Qa,[51:200]);
-noise.probepellet = noiseQa(strcat(datafolder,'CUT_probepellet\BATCH_PC'),Qa,[21:170]);
-noise.probeinf = noiseQa(strcat(datafolder,'CUT_probeinf\BATCH_PC'),Qa,[21:170]);
-noise.dummy = noiseQa(strcat(datafolder,'CUT_dummy\BATCH_PC'),Qa,[21:170]);
+noise.pelletcue = noiseQa(strcat(datafolder,'01_pelletcue\BATCH_PC'),Qa,[51:200]);
+noise.infcue = noiseQa(strcat(datafolder,'02_infcue\BATCH_PC'),Qa,[51:200]);
+noise.probepellet = noiseQa(strcat(datafolder,'03_probepellet\BATCH_PC'),Qa,[21:170]);
+noise.probeinf = noiseQa(strcat(datafolder,'04_probeinf\BATCH_PC'),Qa,[21:170]);
+noise.dummy = noiseQa(strcat(datafolder,'05_dummy\BATCH_PC'),Qa,[21:170]);
 
 savefile = strcat(masterfolder, 'Extracted Matlab data\', ratname);
 
@@ -16,11 +16,11 @@ savefile = strcat(masterfolder, 'Extracted Matlab data\', ratname);
 % matrices
 
 %% extracts CONCs
-cuepellet = trials(strcat(masterpath,datafolder,'CUT_pelletcue'));
-cueinf = trials(strcat(masterpath,datafolder,'CUT_infcue'));
-probepellet = trials(strcat(masterpath,datafolder,'CUT_probepellet'));
-probeinf = trials(strcat(masterpath,datafolder,'CUT_probeinf'));
-dummy = trials(strcat(masterpath,datafolder,'CUT_dummy'));
+cuepellet = trials(strcat(datafolder,'01_pelletcue\BATCH_PC'));
+cueinf = trials(strcat(datafolder,'02_infcue\BATCH_PC'));
+probepellet = trials(strcat(datafolder,'03_probepellet\BATCH_PC'));
+probeinf = trials(strcat(datafolder,'04_probeinf\BATCH_PC'));
+dummy = trials(strcat(datafolder,'05_dummy\BATCH_PC'));
 
 %% extracts behavior
 behav_data = unpacked(strcat(datafolder, behavfile));
@@ -60,7 +60,7 @@ pvi_cols;
 
 x = nans(nrows,8); %sets size of x, change if adding more columns
 
-x(:,R_rat) = rat;
+x(:,R_rat) = ratnumber;
 x(:,R_date) = date;
 x(:,R_region) = region;
 x(:,R_trialN) = extract_sort(:,1);
@@ -72,8 +72,8 @@ x(noise_all,R_noise) = 1;
 % x(:,10:11) = pvi_approach(behavfile);
 
 %% to save variables in structured array
-struct.(strcat('pvi',num2str(rat), '_x')) = x;
-struct.(strcat('pvi',num2str(rat), '_s')) = s;
-struct.(strcat('pvi',num2str(rat), '_behav')) = behav_data;
+struct.(strcat(ratname, '_x')) = x;
+struct.(strcat(ratname, '_s')) = s;
+struct.(strcat(ratname, '_behav')) = behav_data;
 
-save(strcat(masterpath,savefile), '-struct', 'struct');
+save(strcat(savefile), '-struct', 'struct');

@@ -29,3 +29,9 @@ save(ConcMatrixFile, 'AllConcs', '-ascii', '-tabs');
 % CVMatrix('PVI08',302,85,46.35) - Factors=3, Qa=263.276
 % CVMatrix('PVI09',301,80,51.80) - Factors=3, Qa=472.082
 % CVMatrix('PVI10',309,80,54.73) - Factors=3, Qa=475.669
+
+% CVMatrix('PVI12',302,80,45.55) - Factors=2, Qa=491.02 *avg cal used (45.55)
+
+% CVMatrix('PVI15',306,80,31.54) - Factors=2, Qa=1359.28
+% CVMatrix('PVI16',317,80,39.24) - Factors=3, Qa=159.693
+% CVMatrix('PVI18',300,80,49.66) - Factors=3, Qa=138.501
