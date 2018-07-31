@@ -1,12 +1,12 @@
-function extractdata(rawdatafolder, ratname, ratnumber, date, region, behavfile, Qa)
+function extractdata(masterfolder, ratname, ratnumber, date, region, behavfile, Qa)
 
-datafolder = strcat(rawdatafolder, ratname, '\');
+datafolder = strcat(masterfolder, 'Raw data and snipped trials\', ratname, '\');
 
 noise.pelletcue = noiseQa(strcat(datafolder,'01_pelletcue\BATCH_PC'),Qa,[51:200]);
 noise.infcue = noiseQa(strcat(datafolder,'02_infcue\BATCH_PC'),Qa,[51:200]);
-noise.probepellet = noiseQa(strcat(datafolder,'03_probepellet\BATCH_PC'),Qa,[21:170]);
-noise.probeinf = noiseQa(strcat(datafolder,'04_probeinf\BATCH_PC'),Qa,[21:170]);
-noise.dummy = noiseQa(strcat(datafolder,'05_dummy\BATCH_PC'),Qa,[21:170]);
+noise.probepellet = noiseQa(strcat(datafolder,'03_probepellet\BATCH_PC'),Qa,[51:200]);
+noise.probeinf = noiseQa(strcat(datafolder,'04_probeinf\BATCH_PC'),Qa,[51:200]);
+noise.dummy = noiseQa(strcat(datafolder,'05_dummy\BATCH_PC'),Qa,[51:200]);
 
 savefile = strcat(masterfolder, 'Extracted Matlab data\', ratname);
 
