@@ -60,7 +60,7 @@ if plotrepresentativedata == 1
 end
 
 % Works out averages using voltanalysis and makes average plots
-[all_avg all_trials] = voltanalysis_pvi(loadfile,3,1,0,'All rats');
+[all_avg all_trials] = voltanalysis_pvi(loadfile,3,1);
 
 pvi_avgtraces_uncued(all_trials)
 pvi_avgtraces_cued(all_trials)
@@ -88,7 +88,3 @@ spssCuedEpochs(:,2:7) = cat(2,Cued_BL, Cued_Cue, Cued_Reward);
 % Makes bar graphs for epochs
 pvi_uncuedbars(spssUncuedEpochs)
 pvi_cuedbars(spssCuedEpochs)
-
-
-
-

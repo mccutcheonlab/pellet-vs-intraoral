@@ -1,6 +1,6 @@
 %% outputs averaged and rich data using specified inputs
 
-function [avgdata, alldata] = voltanalysis_pvi(loadfile,region,adjBL,makegraph,title_pvi)
+function [avgdata, alldata] = voltanalysis_pvi(loadfile,region,adjBL)
 
 %region: core=1, shell=2, all regions=3, all regions+latency exclusions=4
 %analysis: 'trial'=trial by trial
@@ -60,7 +60,4 @@ all_trials = cat(1,pelletcue_all,infcue_all,probep_all,probeinf_all,dummy_all);
 
 avgdata = all_trials';
 
-if makegraph == 1
-    lineplot_pvi(avgdata,title_pvi);
-end
 
