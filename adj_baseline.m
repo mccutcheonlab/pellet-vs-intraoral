@@ -3,7 +3,7 @@ function [result] = adj_baseline_update(concs,tzero,bl,transpose);
 %all based on average of 10 scans
 
 if transpose == 1
-    concs = concs'
+    concs = concs';
 end
 
 x = tzero - bl;
@@ -18,5 +18,5 @@ for i = 1:size(concs,2);
 end
 
 if transpose == 1
-    result = result'
+    result = result';
 end

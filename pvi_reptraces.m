@@ -1,4 +1,4 @@
-function pvi_reptraces(ratnumber, datafolder)
+function pvi_reptraces(ratnumber, data)
 
 load(strcat(datafolder, 'allpvi'))
 pvi_cols;

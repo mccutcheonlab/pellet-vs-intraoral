@@ -18,22 +18,22 @@ figure1 = figure;
 % Create axes
 axes1 = axes('Parent',figure1,'XTick',[],'TickDir','out');
 xlim(axes1,[0 8]);
-ylim(axes1,[-3 23]);
+ylim(axes1,[-1 25]);
 hold(axes1,'all');
 
 % Create bars
 hold on
 
-bar(pelletx,avgs(pelletCol),'FaceColor',pvi_colors_mat(1,:));
-bar(infx,avgs(infCol),'FaceColor',pvi_colors_mat(2,:));
-bar(dummyx,avgs(dummyCol),'FaceColor',pvi_colors_mat(3,:));
+bar(pelletx,avgs(pelletCol),'FaceColor',yellow_lt);
+bar(infx,avgs(infCol),'FaceColor',green_lt);
+bar(dummyx,avgs(dummyCol),'FaceColor',grey_lt);
 
 % % Create scatters
 
 for i = 1:7
-    plot(pelletx,data(i,pelletCol),'-o','MarkerEdgeColor',[0 0 0],'MarkerSize',2);
-    plot(infx,data(i,infCol),'-o','MarkerEdgeColor',[0 0 0],'MarkerSize',2);
-    plot(dummyx,data(i,dummyCol),'-o','MarkerEdgeColor',[0 0 0],'MarkerSize',2);
+    plot(pelletx,data(i,pelletCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerSize',2);
+    plot(infx,data(i,infCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerSize',2);
+    plot(dummyx,data(i,dummyCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerSize',2);
 end
 
 % reshape graph

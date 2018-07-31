@@ -6,9 +6,8 @@ function [avgdata, alldata] = voltanalysis_pvi(loadfile,region,adjBL,makegraph,t
 %analysis: 'trial'=trial by trial
 
 %% loads all data and column names
-load(loadfile)
+load(loadfile);
 pvi_cols; %loads column names
-setpath; %sets paths for loading and saving appropriate for diff computers
 
 %% works out which regions to include and filters noisy trials out
 if region == 3;

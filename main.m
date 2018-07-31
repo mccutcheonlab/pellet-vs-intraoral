@@ -1,23 +1,27 @@
 %% Script to assemble_rat_data
 
-masterfolder = 'R:\DA_and_Reward\jem64\Publication Data\McCutcheon_ACSChem\'
+% ADD PATH TO DATA 
+masterfolder = 'R:\DA_and_Reward\jem64\Publication Data\McCutcheon_ACSChem\';
 
-
-assembledata = 0 % change to assemble data from raw data files
+assembledata = 0; % change to assemble data from raw data files
 plotrepresentativedata = 0; % change to plot rep data
+plotaveragedata = 0; % change to plot avg data
 
 % Checks value of assembledata and works out whether it needs to extract
 % from raw data files
 
 if assembledata == 1;
     % Extracts all data for individual rats
-    extractdata('pvi08', 8, 120925, 1, '!2012-09-25_12h43m.Subject PVI8', 263.276);
-    extractdata('pvi09', 9, 120926, 1, '!2012-09-26_11h23m.Subject PVI9', 472.082);
-    extractdata('pvi10', 10, 120927, 1, '!2012-09-27_13h54m.Subject PVI10', 475.669);
-    extractdata('pvi12', 12, 121129, 1, '!2012-11-29_13h47m.Subject PVI12', 491.02);
-    extractdata('pvi15', 15, 121218, 1, '!2012-12-18_11h00m.Subject PVI15', 1359.28);
-    extractdata('pvi16', 16, 121218, 2, '!2012-12-18_15h02m.Subject PVI16', 159.653);
-    extractdata('pvi18', 18, 121219, 2, '!2012-12-19_12h48m.Subject PVI18', 138.501);
+    
+    rawdatafolder = strcat(masterfolder, 'Raw data and snipped trials\');
+    
+    extractdata(rawdatafolder, 'pvi08', 8, 120925, 1, '!2012-09-25_12h43m.Subject PVI8', 263.276);
+    extractdata(rawdatafolder, 'pvi09', 9, 120926, 1, '!2012-09-26_11h23m.Subject PVI9', 472.082);
+    extractdata(rawdatafolder, 'pvi10', 10, 120927, 1, '!2012-09-27_13h54m.Subject PVI10', 475.669);
+    extractdata(rawdatafolder, 'pvi12', 12, 121129, 1, '!2012-11-29_13h47m.Subject PVI12', 491.02);
+    extractdata(rawdatafolder, 'pvi15', 15, 121218, 1, '!2012-12-18_11h00m.Subject PVI15', 1359.28);
+    extractdata(rawdatafolder, 'pvi16', 16, 121218, 2, '!2012-12-18_15h02m.Subject PVI16', 159.653);
+    extractdata(rawdatafolder, 'pvi18', 18, 121219, 2, '!2012-12-19_12h48m.Subject PVI18', 138.501);
 
     % Combines data into single matrix for further analysis
     pvi_cols; %loads column names for x matrix
@@ -45,21 +49,46 @@ if assembledata == 1;
         'core_rats', 'shell_rats');
 end
 
-%% Analysis PVI data set using other programs
+%% Analysis of PVI data set using data in allpvi
 
-clear all; close all
-loadfile = 'R:\DA_and_Reward\jem64\Publication Data\McCutcheon_ACSChem\Extracted Matlab data\allpvi'
-
-% Works out core, shell, and both region averages using voltanalysis
-
-[core_avg core_all] = voltanalysis_pvi(loadfile,1,'rat','core, rat-by-rat');
-[shell_avg shell_all] = voltanalysis_pvi(loadfile,2,'rat','shell, rat-by-rat');
-[all_avg all_alldata] = voltanalysis_pvi(loadfile,3,'rat','all, rat-by-rat');
+loadfile = strcat(masterfolder, '\Extracted Matlab data\allpvi');
 
 
 %% For representative plots
 if plotrepresentativedata == 1
-    datafolder = 'R:\DA_and_Reward\jem64\Publication Data\McCutcheon_ACSChem\Extracted Matlab data\';
-    pvi_reptraces(8, datafolder);
+    pvi_reptraces(8, allpvi);
 end
+
+% Works out averages using voltanalysis and makes average plots
+[all_avg all_trials] = voltanalysis_pvi(loadfile,3,1,0,'All rats');
+
+pvi_avgtraces_uncued(all_trials)
+pvi_avgtraces_cued(all_trials)
+
+% Places data in epochs
+Uncued_BL = squeeze(mean(all_trials(91:100,:,3:5)));
+Uncued_Reward = squeeze(mean(all_trials(101:130,:,3:5)));
+
+Cued_BL = squeeze(mean(all_trials(91:100,:,1:2)));
+Cued_Cue = squeeze(mean(all_trials(101:110,:,1:2)));
+Cued_Reward = squeeze(mean(all_trials(131:140,:,1:2)));
+
+% Assembles average epoch data into simple matrices for stats in SPSS
+
+% Uncued trials
+spssUncuedEpochs = nans(7,7);
+spssUncuedEpochs(:,1) = [8; 9; 10; 12; 15; 16; 18];
+spssUncuedEpochs(:,2:7) = cat(2,Uncued_BL, Uncued_Reward);
+
+% Cued trials
+spssCuedEpochs = nans(7,7);
+spssCuedEpochs(:,1) = [8; 9; 10; 12; 15; 16; 18];
+spssCuedEpochs(:,2:7) = cat(2,Cued_BL, Cued_Cue, Cued_Reward);
+
+% Makes bar graphs for epochs
+pvi_uncuedbars(spssUncuedEpochs)
+pvi_cuedbars(spssCuedEpochs)
+
+
+
 

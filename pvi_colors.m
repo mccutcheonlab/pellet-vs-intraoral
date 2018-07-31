@@ -11,4 +11,6 @@ yellow_lt = [0.996 0.949 0.565];
 green_lt = [0.675 0.808 0.459];
 grey_lt = [0.886 0.878 0.878];
 
-pvi_colors_mat = cat(1,red,green,orange,blue,grey);
+almost_black = [0.1 0.1 0.1];
+
+pvi_colors_mat = cat(1,red,blue,yellow,green,grey);

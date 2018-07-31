@@ -1,7 +1,6 @@
-function extractdata(ratname, ratnumber, date, region, behavfile, Qa)
+function extractdata(rawdatafolder, ratname, ratnumber, date, region, behavfile, Qa)
 
-masterfolder = 'R:\DA_and_Reward\jem64\Publication Data\McCutcheon_ACSChem\'
-datafolder = strcat(masterfolder, 'Raw data and snipped trials\', ratname, '\');
+datafolder = strcat(rawdatafolder, ratname, '\');
 
 noise.pelletcue = noiseQa(strcat(datafolder,'01_pelletcue\BATCH_PC'),Qa,[51:200]);
 noise.infcue = noiseQa(strcat(datafolder,'02_infcue\BATCH_PC'),Qa,[51:200]);
