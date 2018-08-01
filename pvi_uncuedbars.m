@@ -38,4 +38,4 @@ end
 
 % reshape graph
 set(gca,'color','none') %removes white b/ground
-set(gcf, 'Position', [300 400 120 150])
+set(gcf, 'Position', [500 800 120 150])

@@ -1,5 +1,7 @@
 function pvi_avgtraces_cued(data)
 
+figure()
+
 pvi_colors;
 x_ax = [1:150];
 
@@ -20,4 +22,4 @@ shadedErrorBar(x_ax,ymean,ysem,{'-','Color', red, 'markerfacecolor',red});
 hold off
 
 set(gca,'color','none') %removes white b/ground
-set(gcf, 'Position', [300 400 180 180])
+set(gcf, 'Position', [700 800 180 180])

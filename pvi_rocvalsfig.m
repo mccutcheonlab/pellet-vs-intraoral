@@ -23,4 +23,4 @@ scatter(sigx,sigy,'r');
 hold off
 
 set(gca,'color','none') %removes white b/ground
-set(gcf, 'Position', [300+xoffset 400 180 270])
+set(gcf, 'Position', [100+xoffset 100 180 270])

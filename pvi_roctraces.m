@@ -21,4 +21,4 @@ hold off
 
 set(gca,'ylim',[-13 21]);
 set(gca,'color','none') %removes white b/ground
-set(gcf, 'Position', [300+xoffset 700 180 180])
+set(gcf, 'Position', [100+xoffset 500 180 180])
