@@ -8,7 +8,7 @@ axes1 = axes('Parent',figure1,'YTick',[0.3 0.4 0.5 0.6 0.7]); %add for ticks 'XT
 ylim(axes1,[0.2 0.8]);
 hold(axes1,'all');
 
-plot([0; 0], [0.2; 0.8], '-k'); axis off;
+plot([0; 0], [0.3; 0.7], '-k'); axis off;
 
 plot(a)
 
@@ -18,9 +18,9 @@ sigy = a(L);
 
 scatter(sigx,sigy,'r');
 
-title(trialtype);
+% title(trialtype);
 
 hold off
 
 set(gca,'color','none') %removes white b/ground
-set(gcf, 'Position', [300+xoffset 400 180 180])
+set(gcf, 'Position', [300+xoffset 400 180 270])

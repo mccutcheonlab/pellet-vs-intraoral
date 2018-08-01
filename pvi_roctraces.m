@@ -19,6 +19,6 @@ ysem = std(shell) / sqrt(size(shell,1));
 shadedErrorBar(x_ax,ymean,ysem,{'-','Color', grey, 'markerfacecolor',grey});
 hold off
 
-set(gca,'ylim',[-13 20]);
+set(gca,'ylim',[-13 21]);
 set(gca,'color','none') %removes white b/ground
 set(gcf, 'Position', [300+xoffset 700 180 180])
