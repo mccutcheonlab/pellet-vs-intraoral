@@ -15,7 +15,7 @@ if assembledata == 1;
     extractdata(masterfolder, 'pvi08', 8, 120925, 1, '!2012-09-25_12h43m.Subject PVI8', 263.276);
     extractdata(masterfolder, 'pvi09', 9, 120926, 1, '!2012-09-26_11h23m.Subject PVI9', 472.082);
     extractdata(masterfolder, 'pvi10', 10, 120927, 1, '!2012-09-27_13h54m.Subject PVI10', 475.669);
-    extractdata(masterfolder, 'pvi12', 12, 121129, 1, '!2012-11-29_13h47m.Subject PVI12', 491.02);
+    extractdata(masterfolder, 'pvi12', 12, 121129, 2, '!2012-11-29_13h47m.Subject PVI12', 491.02);
     extractdata(masterfolder, 'pvi15', 15, 121218, 1, '!2012-12-18_11h00m.Subject PVI15', 1359.28);
     extractdata(masterfolder, 'pvi16', 16, 121218, 2, '!2012-12-18_15h02m.Subject PVI16', 159.653);
     extractdata(masterfolder, 'pvi18', 18, 121219, 2, '!2012-12-19_12h48m.Subject PVI18', 138.501);

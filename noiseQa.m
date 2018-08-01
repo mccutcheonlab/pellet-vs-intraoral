@@ -12,19 +12,15 @@ if exist('range') == 0
     range = [1:200];
 end
 
-% folder = 'F:\Jaime_Expts\Moved_to_server\1209_PelletVsIO\PVI18\121219_TestDay1\01_Electrode_AA\01_session\CUT_dummy\BATCH_PC';
-% Qa = 138.081;
-% range = [51:200];
-
 x=1; z=[]; y=[]; b=[];
 
 dirListing = dir(folder);
 
 for d = 1:length(dirListing)
     if strcmp(regexp(dirListing(d).name, 'Q', 'match'), 'Q');
-        y = [y d]; % get indices of CONC files by adding current file to existing list of y
+        y = [y d]; % get indices of Q files by adding current file to existing list of y
         a = regexp(dirListing(d).name, '[0-9]+', 'match');
-        b = [b a(2)]; %adds 2nd digit to list of existing list of b
+        b = [b a(1)]; %adds 2nd digit to list of existing list of b
         
     end
 end
