@@ -15,11 +15,11 @@ savefile = strcat(masterfolder, 'Extracted Matlab data\', ratname);
 % matrices
 
 %% extracts CONCs
-cuepellet = trials(strcat(datafolder,'01_pelletcue\BATCH_PC'));
-cueinf = trials(strcat(datafolder,'02_infcue\BATCH_PC'));
-probepellet = trials(strcat(datafolder,'03_probepellet\BATCH_PC'));
-probeinf = trials(strcat(datafolder,'04_probeinf\BATCH_PC'));
-dummy = trials(strcat(datafolder,'05_dummy\BATCH_PC'));
+[cuepellet cuep_fileIDs] = trials(strcat(datafolder,'01_pelletcue\BATCH_PC'));
+[cueinf cueinf_fileIDs] = trials(strcat(datafolder,'02_infcue\BATCH_PC'));
+[probepellet pp_fileIDs] = trials(strcat(datafolder,'03_probepellet\BATCH_PC'));
+[probeinf pinf_fileIDs] = trials(strcat(datafolder,'04_probeinf\BATCH_PC'));
+[dummy dummy_fileIDs] = trials(strcat(datafolder,'05_dummy\BATCH_PC'));
 
 %% extracts behavior
 behav_data = unpacked(strcat(datafolder, behavfile));
@@ -48,16 +48,10 @@ for i = 1:5;
     length_mat(2,i) = sum(extract(:,2) == i);
 end
 
-%checks that n of trial types from CONCs and behav_data match
-% if isequal(length_mat(1,:),length_mat(2,:)) == 0;
-%     removelast;
-% end    
-
 make_noise;
-
 pvi_cols;
 
-x = nans(nrows,8); %sets size of x, change if adding more columns
+x = nans(nrows,9); %sets size of x, change if adding more columns
 
 x(:,R_rat) = ratnumber;
 x(:,R_date) = date;
@@ -67,8 +61,15 @@ x(:,R_trialtype) = extract_sort(:,2);
 x(:,R_latency) = extract_sort(:,3);
 x(:,R_approach) = extract_sort(:,4);
 x(noise_all,R_noise) = 1;
+x(:,R_fileID) = cat(2, cuep_fileIDs, cueinf_fileIDs, pp_fileIDs, pinf_fileIDs, dummy_fileIDs)';
 
-% x(:,10:11) = pvi_approach(behavfile);
+for i = 1:5;
+    Ltrial = x(:,R_trialtype) == i;
+    fileIDs = x(Ltrial,R_fileID);
+    if fileIDs(end) < fileIDs(1)
+        msgbox(strcat('Check Med file and voltammetry data to ensure trial types match up'))
+    end
+end
 
 %% to save variables in structured array
 struct.(strcat(ratname, '_x')) = x;

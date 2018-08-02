@@ -5,7 +5,7 @@
 %(alphabetical?). Basically, care should be taken that the files come out
 %in the right order. Looking at the 
 
-function [trials] = trials(folder) %LINE 24 CHANGED TO COPE WITH FILES WITH ONLY ONE DIGIT!!!
+function [trials fileIDs] = trials(folder) %LINE 24 CHANGED TO COPE WITH FILES WITH ONLY ONE DIGIT!!!
 x=1; %column of matrix to place data in
 z=[];
 y=[];
@@ -40,26 +40,15 @@ for d = 1:length(f)
         fclose(fid);
         
         [p,n,e] = fileparts(f(d).name);
-        if regexp(e, '.bad') == 1;
-            z=[z x];
-        end
         x=x+1;
     end % if-clause
       
-    
 end % for-loop
 
 trials = cell2mat(concs); %converts cell array into matrix
+fileIDs = b;
 
-trials(:,z)=nan;    %put 'bad' trials in z
 
-
-%rewardAvg = mean(trials(101:110,:)); %finds average of reward epoch in each trial
-
-% avg=nanmean(JB5,2)
-% JB5All = [JB5suc1 JB5sacc JB5suc2] %joins matrices
-% AllRats = cat(3,JB5All,JB6All) %joins matrices on third dimension
-% AvgAllRats = nanmean(AllRats,3) %means along third dimension
 
 
 

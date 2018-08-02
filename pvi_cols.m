@@ -6,3 +6,4 @@ R_trialtype = 5;
 R_latency = 6;
 R_approach = 7;
 R_noise = 8;
+R_fileID = 9;

@@ -6,9 +6,7 @@ masterfolder = 'R:\DA_and_Reward\jem64\Publication Data\McCutcheon_ACSChem\';
 assembledata = 1; % change to assemble data from raw data files
 plotrepresentativedata = 0; % change to plot rep data
 
-% Checks value of assembledata and works out whether it needs to extract
-% from raw data files
-
+%% Checks value of assembledata and to determine whether to extract from raw data
 if assembledata == 1;
     % Extracts all data for individual rats
     
@@ -50,17 +48,13 @@ end
 
 loadfile = strcat(masterfolder, '\Extracted Matlab data\allpvi');
 
-
-%% For representative plots
+% For representative plots
 if plotrepresentativedata == 1
     pvi_reptraces(8, allpvi);
 end
 
 % Works out averages using voltanalysis and makes average plots
 [all_avg all_trials] = voltanalysis_pvi(loadfile,3,1);
-
-pvi_avgtraces_uncued(all_trials)
-pvi_avgtraces_cued(all_trials)
 
 % Places data in epochs
 Uncued_BL = squeeze(mean(all_trials(91:100,:,3:5)));
@@ -82,11 +76,16 @@ spssCuedEpochs = nans(7,7);
 spssCuedEpochs(:,1) = [8; 9; 10; 12; 15; 16; 18];
 spssCuedEpochs(:,2:7) = cat(2,Cued_BL, Cued_Cue, Cued_Reward);
 
+% Makes line graphs for each trial type
+pvi_avgtraces_uncued(all_trials)
+pvi_avgtraces_cued(all_trials)
+
 % Makes bar graphs for epochs
 pvi_uncuedbars(spssUncuedEpochs)
 pvi_cuedbars(spssCuedEpochs)
 
-loadfile = 'C:\Users\James Rig\Dropbox\MATLAB\Experiments\2013_PVI\data\allpvi';
+%% To make Figure 2 - ROC analysis of different regions 
+
 loadfile = strcat(masterfolder, '\Extracted Matlab data\allpvi');
-close all
+
 [rocvals rocp] = roc_pvi(loadfile, 30);

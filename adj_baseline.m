@@ -1,4 +1,4 @@
-function [result] = adj_baseline_update(concs,tzero,bl,transpose);
+function [result] = adj_baseline(concs,tzero,bl,transpose);
 %need to add tzero (100), bl (50) both in scans
 %all based on average of 10 scans
 
