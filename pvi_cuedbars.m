@@ -1,4 +1,4 @@
-function pvi_cuebars2(data)
+function pvi_cuedbars(data)
 
 avgs = mean(data,1);
 
@@ -8,7 +8,7 @@ infx = [5, 6, 7];
 pelletCol = [2, 4, 6];
 infCol = [3, 5, 7];
 
-pvi_colors;;
+pvi_colors;
 
 % Create figure
 figure1 = figure;
