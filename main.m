@@ -3,7 +3,7 @@
 % ADD PATH TO DATA 
 masterfolder = 'R:\DA_and_Reward\jem64\Publication Data\McCutcheon_ACSChem\';
 
-assembledata = 1; % change to assemble data from raw data files
+assembledata = 0; % change to assemble data from raw data files
 plotrepresentativedata = 0; % change to plot rep data
 
 %% Checks value of assembledata and to determine whether to extract from raw data
@@ -50,7 +50,7 @@ loadfile = strcat(masterfolder, '\Extracted Matlab data\allpvi');
 
 % For representative plots
 if plotrepresentativedata == 1
-    pvi_reptraces(8, allpvi);
+    pvi_reptraces(loadfile, 8, [1 2 3 4 5]);
 end
 
 % Works out averages using voltanalysis and makes average plots

@@ -56,23 +56,21 @@ for i = 1:length(rats)
 
     end
 end
-
-figure()
-ax1 = subplot(1,2,1);
-scatter(approach_mean,DA_mean);
-ylabel('DA peak (1s)');
-xlabel('Approach (ms)');
-title('Mean of each rat');
-
-ax2 = subplot(1,2,2);
-scatter(latency_mean,DA_mean);
-ylim([-20 60]);
-xlabel('Latency (s)');
+% 
+% figure()
+% ax1 = subplot(1,2,1);
+% scatter(approach_mean,DA_mean);
+% ylabel('DA peak (1s)');
+% xlabel('Approach (ms)');
+% title('Mean of each rat');
+% 
+% ax2 = subplot(1,2,2);
+% scatter(latency_mean,DA_mean);
+% ylim([-20 60]);
+% xlabel('Latency (s)');
 
 % Making figure for approach behaviour vs dopamine
 figure1 = figure;
-
-
 
 pellet_approach = removenanrows(DA_approach(:,:,1));
 inf_approach = removenanrows(DA_approach(:,:,2));
@@ -115,11 +113,31 @@ set(gcf, 'Position', [900 800 120 150])
 
 
 
+probability_approach = squeeze(N_approach(:,1,:) ./ sum(N_approach,2))
 
+figure2 = figure;
 
+approach_mean = mean(probability_approach)
 
+axes1 = axes('Parent',figure2,'XTick',[],'TickDir','out');
+xlim(axes1,[0 3]);
+ylim(axes1,[-0.1 .75]);
+hold(axes1,'all');
 
+hold on
 
+xvals = [1 2];
+
+bar(xvals(1),approach_mean(1),'FaceColor',red_lt)
+bar(xvals(2),approach_mean(2),'FaceColor',blue_lt)
+
+for i = 1:size(probability_approach,1)
+    plot(xvals,probability_approach(i,:),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerSize',2);
+end
+
+% reshape graph
+set(gca,'color','none') %removes white b/ground
+set(gcf, 'Position', [900 800 120 150])
 
 % Lnoise = x(:,R_noise) ~= 1;
 % Lrat = x(:,R_rat) == 10;

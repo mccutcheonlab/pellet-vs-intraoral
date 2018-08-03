@@ -31,7 +31,7 @@ for i = 1:4 % for different trial types
     
     pvi_roctraces(core_bins, shell_bins, colors{i}, i*200)
     
-    [a(:,i) p(:,i)] = nanroc(core_bins,shell_bins);
+    [a(:,i) p(:,i)] = nanroc(core_bins,shell_bins, 100, 4, 250);
     
     pvi_rocvalsfig(a(:,i), p(:,i), trialtypes{i}, i*200);
     
