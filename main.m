@@ -60,7 +60,7 @@ end
 Uncued_BL = squeeze(median(all_trials(51:100,:,3:5)));
 Uncued_Reward = squeeze(mean(all_trials(101:130,:,3:5)));
 
-Cued_BL = squeeze(mean(all_trials(91:100,:,1:2)));
+Cued_BL = squeeze(median(all_trials(51:100,:,1:2)));
 Cued_Cue = squeeze(mean(all_trials(101:110,:,1:2)));
 Cued_Reward = squeeze(mean(all_trials(131:140,:,1:2)));
 
@@ -89,8 +89,6 @@ loadfile = strcat(masterfolder, '\Extracted Matlab data\allpvi');
 approach_analysis(loadfile)
 
 %% To make Figure 3 - ROC analysis of different regions 
-
-
 
 loadfile = strcat(masterfolder, '\Extracted Matlab data\allpvi');
 
