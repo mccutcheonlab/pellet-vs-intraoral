@@ -30,10 +30,12 @@ bar(dummyx,avgs(dummyCol),'FaceColor',grey_lt);
 
 % % Create scatters
 
+sc_color = {'none', 'none', 'none', grey, 'none', grey, grey};
+
 for i = 1:7
-    plot(pelletx,data(i,pelletCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerSize',2);
-    plot(infx,data(i,infCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerSize',2);
-    plot(dummyx,data(i,dummyCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerSize',2);
+    plot(pelletx,data(i,pelletCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerFaceColor',sc_color{i},'MarkerSize',2);
+    plot(infx,data(i,infCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerFaceColor',sc_color{i},'MarkerSize',2);
+    plot(dummyx,data(i,dummyCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerFaceColor',sc_color{i},'MarkerSize',2);
 end
 
 % reshape graph
