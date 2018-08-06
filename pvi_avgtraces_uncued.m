@@ -11,7 +11,7 @@ ymean = mean(y,2);
 ysem = std(y')' / sqrt(size(y,2));
 
 shadedErrorBar(x_ax,ymean,ysem,{'-','Color', grey,'markerfacecolor',grey});
-hold on; plot([20; 20], [12; 17], '-k'); axis off;
+hold on; plot([40; 40], [12; 17], '-k'); axis off;
 
 % Probe infusion trial
 y = data(51:200,:,4);
