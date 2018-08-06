@@ -113,7 +113,7 @@ set(gcf, 'Position', [900 800 120 150])
 
 
 
-probability_approach = squeeze(N_approach(:,1,:) ./ sum(N_approach,2))
+probability_approach = squeeze(N_approach(:,2,:) ./ sum(N_approach,2))
 
 figure2 = figure;
 
@@ -121,7 +121,8 @@ approach_mean = mean(probability_approach)
 
 axes1 = axes('Parent',figure2,'XTick',[],'TickDir','out');
 xlim(axes1,[0 3]);
-ylim(axes1,[-0.1 .75]);
+ylim(axes1,[0 1.05]);
+
 hold(axes1,'all');
 
 hold on
@@ -136,8 +137,12 @@ for i = 1:size(probability_approach,1)
 end
 
 % reshape graph
-set(gca,'color','none') %removes white b/ground
-set(gcf, 'Position', [900 800 120 150])
+set(gca, 'Ytick', [0.25 0.5 0.75 1]);
+
+set(gca, 'Ytick', [0 0.5 1]);
+
+set(gca,'color','none'); %removes white b/ground
+set(gcf, 'Position', [900 800 120 150]);
 
 % Lnoise = x(:,R_noise) ~= 1;
 % Lrat = x(:,R_rat) == 10;

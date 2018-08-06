@@ -57,7 +57,7 @@ end
 [all_avg all_trials] = voltanalysis_pvi(loadfile,3,1);
 
 % Places data in epochs
-Uncued_BL = squeeze(mean(all_trials(91:100,:,3:5)));
+Uncued_BL = squeeze(median(all_trials(51:100,:,3:5)));
 Uncued_Reward = squeeze(mean(all_trials(101:130,:,3:5)));
 
 Cued_BL = squeeze(mean(all_trials(91:100,:,1:2)));
@@ -84,7 +84,13 @@ pvi_avgtraces_cued(all_trials)
 pvi_uncuedbars(spssUncuedEpochs)
 pvi_cuedbars(spssCuedEpochs)
 
-%% To make Figure 2 - ROC analysis of different regions 
+%% To make behavioural approach figure including relationship to behaviour
+loadfile = strcat(masterfolder, '\Extracted Matlab data\allpvi');
+approach_analysis(loadfile)
+
+%% To make Figure 3 - ROC analysis of different regions 
+
+
 
 loadfile = strcat(masterfolder, '\Extracted Matlab data\allpvi');
 
