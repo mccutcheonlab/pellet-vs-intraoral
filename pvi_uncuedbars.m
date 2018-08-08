@@ -30,14 +30,16 @@ bar(dummyx,avgs(dummyCol),'FaceColor',grey_lt);
 
 % % Create scatters
 
-sc_color = {'none', 'none', 'none', grey, 'none', grey, grey};
+% sc_color = {'none', 'none', 'none', grey, 'none', grey, grey};
+sc_color = {'w', 'w', 'w', almost_black, 'w', almost_black, almost_black};
 
 for i = 1:7
-    plot(pelletx,data(i,pelletCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerFaceColor',sc_color{i},'MarkerSize',2);
-    plot(infx,data(i,infCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerFaceColor',sc_color{i},'MarkerSize',2);
-    plot(dummyx,data(i,dummyCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerFaceColor',sc_color{i},'MarkerSize',2);
+    plot(pelletx,data(i,pelletCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerFaceColor',sc_color{i},'MarkerSize',5);
+    plot(infx,data(i,infCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerFaceColor',sc_color{i},'MarkerSize',5);
+    plot(dummyx,data(i,dummyCol),'-o','Color',grey,'MarkerEdgeColor',almost_black,'MarkerFaceColor',sc_color{i},'MarkerSize',5);
 end
 
 % reshape graph
 set(gca,'color','none') %removes white b/ground
-set(gcf, 'Position', [500 800 120 150])
+set(gcf, 'Position', [500 800 157 197])
+

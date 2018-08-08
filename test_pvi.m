@@ -12,21 +12,35 @@ s = adj_baseline(s,100,50,1);
 
 Lnoise = x(:,R_noise) ~= 1;
 
-rats = unique(x(:,R_rat)); % determines rat numbers
 
-Ltrial = x(:,R_trialtype) == 3;
 
-for i = 1:length(rats)
-    Lrat = x(:,R_rat) == rats(i);
-    L = Lrat & Lnoise & Ltrial;
-    data = nans(sum(L),2);
-    data(:,1) = median(s(L,51:100),2);
-    data(:,2) = mean(s(L,101:130),2);
-    rats(i)
-    data;
-    [h, p] = ttest(data(:,1), data(:,2))
-end
-    
+Ltrial = x(:,R_trialtype) == 2;
+Lregion = x(:,R_region) == 2;
+
+L = Lnoise & Ltrial & Lregion;
+
+data = nans(sum(L),2);
+data(:,1) = median(s(L,51:100),2);
+data(:,2) = mean(s(L,131:140),2);
+
+[h, p] = ttest(data(:,1), data(:,2))
+
+
+
+% 
+% 
+% rats = unique(x(:,R_rat)); % determines rat numbers
+% for i = 1:length(rats)
+%     Lrat = x(:,R_rat) == rats(i);
+%     L = Lrat & Lnoise & Ltrial;
+%     data = nans(sum(L),2);
+%     data(:,1) = median(s(L,51:100),2);
+%     data(:,2) = mean(s(L,101:130),2);
+%     rats(i)
+%     data;
+%     [h, p] = ttest(data(:,1), data(:,2))
+% end
+%     
 
 
 
